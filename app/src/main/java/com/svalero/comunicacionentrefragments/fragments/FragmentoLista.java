@@ -7,9 +7,11 @@ import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ArrayAdapter;
 import android.widget.ListView;
 
 import com.svalero.comunicacionentrefragments.R;
+import com.svalero.comunicacionentrefragments.beans.Persona;
 
 /**
  * A simple {@link Fragment} subclass.
@@ -65,6 +67,13 @@ public class FragmentoLista extends Fragment {
         return vista;
     }
 
+    @Override
+    public void onActivityCreated(Bundle savedInstanceState) {
+        super.onActivityCreated(savedInstanceState);
+        lista.setAdapter();
+
+    }
+
     // TODO: Rename method, update argument and hook method into UI event
     public void onButtonPressed(Uri uri) {
         if (mListener != null) {
@@ -104,6 +113,15 @@ public class FragmentoLista extends Fragment {
      */
     public interface OnPersonaSeleccionada {
         public void OnPersonaSelect(Persona persona);
+    }
+
+    class AdaptadorLista extends ArrayAdapter<Persona> {
+        Persona[] listaElementos;
+
+        public AdaptadorLista(Fragment context, Persona[] objects) {
+            super(context.getActivity(), R.layout.list_item, objects);
+            this.listaElementos = objects;
+        }
     }
 
 }
