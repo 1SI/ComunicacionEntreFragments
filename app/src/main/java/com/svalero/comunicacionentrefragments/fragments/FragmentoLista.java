@@ -9,6 +9,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ArrayAdapter;
 import android.widget.ListView;
+import android.widget.TextView;
 
 import com.svalero.comunicacionentrefragments.R;
 import com.svalero.comunicacionentrefragments.beans.Persona;
@@ -70,7 +71,10 @@ public class FragmentoLista extends Fragment {
     @Override
     public void onActivityCreated(Bundle savedInstanceState) {
         super.onActivityCreated(savedInstanceState);
-        lista.setAdapter();
+
+        // Si los datos vinieran de fuera, esto iría en un AsyncTask!
+        lista.setAdapter(new AdaptadorLista(this, listaDatosPersona));
+
 
     }
 
@@ -117,10 +121,27 @@ public class FragmentoLista extends Fragment {
 
     class AdaptadorLista extends ArrayAdapter<Persona> {
         Persona[] listaElementos;
+        Activity myContext;
 
         public AdaptadorLista(Fragment context, Persona[] objects) {
             super(context.getActivity(), R.layout.list_item, objects);
             this.listaElementos = objects;
+            this.myContext = context.getActivity();
+        }
+
+        @Override
+        public View getView(int position, View convertView, ViewGroup parent) {
+
+            LayoutInflater inflater = myContext.getLayoutInflater();
+            View item = inflater.inflate(R.layout.list_item, null);
+
+            // Toca hacer referencia a las dos cajas de texto
+            TextView txtNombre = (TextView) item.findViewById(R.id.txtNombre);
+            txtNombre.setText(listaElementos[position].getNombre());
+
+            TextView txtApellido = (TextView) item.findViewById(R.id.txtApellido);
+            txtNombre.setText(listaElementos[position].getApellidos());
+            return super.getView(position, convertView, parent);
         }
     }
 
