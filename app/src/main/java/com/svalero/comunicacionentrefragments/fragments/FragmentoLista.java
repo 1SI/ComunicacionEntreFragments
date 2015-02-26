@@ -7,6 +7,7 @@ import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.ListView;
 import android.widget.TextView;
@@ -26,6 +27,13 @@ public class FragmentoLista extends Fragment {
 
     private OnPersonaSeleccionada mListener;
     private ListView lista;
+    private Persona[] listaDatosPersona = new Persona[]{
+            new Persona("Perico", "De Los Palos", "Foto de Zaragoza"),
+            new Persona("Carla", "Bruni", "Foto de Paris"),
+            new Persona("Carmen", "De Mairena", "Foto de Madrid"),
+            new Persona("Nicolás", "Sarkozy", "Foto de las Islas Seychelles"),
+
+    }; // Simbólico
 
     /*
      * Singleton
@@ -40,6 +48,20 @@ public class FragmentoLista extends Fragment {
 
     public FragmentoLista() {
         // Required empty public constructor
+    }
+
+    /*
+    1º método del ciclo de vida
+    */
+    @Override
+    public void onAttach(Activity activity) {
+        super.onAttach(activity);
+        try {
+            mListener = (OnPersonaSeleccionada) activity;
+        } catch (ClassCastException e) {
+            throw new ClassCastException(activity.toString()
+                    + " must implement OnFragmentInteractionListener");
+        }
     }
 
     /*
@@ -74,6 +96,20 @@ public class FragmentoLista extends Fragment {
 
         // Si los datos vinieran de fuera, esto iría en un AsyncTask!
         lista.setAdapter(new AdaptadorLista(this, listaDatosPersona));
+        lista.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+            @Override
+            public void onItemClick(
+                    AdapterView<?> parent,
+                    View view,
+                    int i,
+                    long id) {
+                // Evento de la lista
+                if (mListener == null) {
+                    mListener.OnPersonaSelect(listaDatosPersona[i]);
+                }
+
+            }
+        });
 
 
     }
@@ -85,19 +121,6 @@ public class FragmentoLista extends Fragment {
         }
     }
 
-    /*
-    1º método del ciclo de vida
-     */
-    @Override
-    public void onAttach(Activity activity) {
-        super.onAttach(activity);
-        try {
-            mListener = (OnPersonaSeleccionada) activity;
-        } catch (ClassCastException e) {
-            throw new ClassCastException(activity.toString()
-                    + " must implement OnFragmentInteractionListener");
-        }
-    }
 
     @Override
     public void onDetach() {
@@ -130,6 +153,10 @@ public class FragmentoLista extends Fragment {
         }
 
         @Override
+
+        /*
+        En caso de tener que descargar imágenes o algo, hacerlo aquí.
+         */
         public View getView(int position, View convertView, ViewGroup parent) {
 
             LayoutInflater inflater = myContext.getLayoutInflater();
