@@ -5,8 +5,11 @@ import android.support.v7.app.ActionBarActivity;
 import android.view.Menu;
 import android.view.MenuItem;
 
+import com.svalero.comunicacionentrefragments.beans.Persona;
+import com.svalero.comunicacionentrefragments.fragments.FragmentoLista;
 
-public class MainActivity extends ActionBarActivity {
+
+public class MainActivity extends ActionBarActivity implements FragmentoLista.OnPersonaSeleccionada {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -35,5 +38,16 @@ public class MainActivity extends ActionBarActivity {
         }
 
         return super.onOptionsItemSelected(item);
+    }
+
+    /**
+     * Recibe el objeto persona que ha sido seleccionado en la lista
+     *
+     * @param persona Los datos de la persona en concreto
+     */
+    @Override
+    public void OnPersonaSelect(Persona persona) {
+        // TODO
+        //FragmentoFoto fFoto =
     }
 }
