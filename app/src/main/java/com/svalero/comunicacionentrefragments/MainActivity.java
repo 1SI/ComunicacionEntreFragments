@@ -1,5 +1,6 @@
 package com.svalero.comunicacionentrefragments;
 
+import android.graphics.drawable.Drawable;
 import android.os.Bundle;
 import android.support.v4.app.FragmentActivity;
 import android.view.Menu;
@@ -49,5 +50,27 @@ public class MainActivity extends FragmentActivity implements FragmentoLista.OnP
     @Override
     public void OnPersonaSelect(Persona persona) {
         FragmentoFoto fFoto = (FragmentoFoto) getSupportFragmentManager().findFragmentById(R.id.fragmentoFoto);
+    }
+
+    private Drawable asignarFoto(Persona persona) {
+        Drawable fotoSeleccionada = null;
+
+        /*
+        Las imágenes se solicitarán al servidor
+        AsyncTask y demás.
+         */
+        if (persona.getNombre().equals("LUIS")) {
+            fotoSeleccionada = getResources().getDrawable(R.drawable.iconoperfilazul);
+        } else if (persona.getNombre().equals("ANA")) {
+            fotoSeleccionada = getResources().getDrawable(R.drawable.perfil);
+
+
+        } else if (persona.getNombre().equals("SARA")) {
+            fotoSeleccionada = getResources().getDrawable(R.drawable.perfil2);
+        } else if (persona.getNombre().equals("PEPE")) {
+            fotoSeleccionada = getResources().getDrawable(R.drawable.perfil3);
+        }
+
+        return fotoSeleccionada;
     }
 }
