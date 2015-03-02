@@ -29,6 +29,14 @@
             android:name="com.svalero.comunicacionentrefragments.fragments.FragmentoFoto"
             android:id="@+id/fragmentoFoto" />
 
+        <fragment
+            tools:layout="@layout/fragment_fragmento_detalle"
+            android:layout_weight="50"
+            android:layout_height="0dp"
+            android:layout_width="match_parent"
+            android:name="com.svalero.comunicacionentrefragments.fragments.FragmentoDetalle"
+            android:id="@+id/fragmentoDescripcion" />
+
     </LinearLayout>
 
 

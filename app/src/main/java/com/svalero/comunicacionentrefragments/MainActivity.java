@@ -7,6 +7,7 @@ import android.view.Menu;
 import android.view.MenuItem;
 
 import com.svalero.comunicacionentrefragments.beans.Persona;
+import com.svalero.comunicacionentrefragments.fragments.FragmentoDetalle;
 import com.svalero.comunicacionentrefragments.fragments.FragmentoFoto;
 import com.svalero.comunicacionentrefragments.fragments.FragmentoLista;
 
@@ -50,6 +51,10 @@ public class MainActivity extends FragmentActivity implements FragmentoLista.OnP
     @Override
     public void OnPersonaSelect(Persona persona) {
         FragmentoFoto fFoto = (FragmentoFoto) getSupportFragmentManager().findFragmentById(R.id.fragmentoFoto);
+        fFoto.cambiarFoto(asignarFoto(persona));
+        FragmentoDetalle fDetalles = (FragmentoDetalle) getSupportFragmentManager().findFragmentById(R.id.fragmentoFoto);
+        fDetalles.cambiarTexto(persona.getDescripcion());
+
     }
 
     private Drawable asignarFoto(Persona persona) {
