@@ -1,15 +1,16 @@
 package com.svalero.comunicacionentrefragments;
 
 import android.os.Bundle;
-import android.support.v7.app.ActionBarActivity;
+import android.support.v4.app.FragmentActivity;
 import android.view.Menu;
 import android.view.MenuItem;
 
 import com.svalero.comunicacionentrefragments.beans.Persona;
+import com.svalero.comunicacionentrefragments.fragments.FragmentoFoto;
 import com.svalero.comunicacionentrefragments.fragments.FragmentoLista;
 
 
-public class MainActivity extends ActionBarActivity implements FragmentoLista.OnPersonaSeleccionada {
+public class MainActivity extends FragmentActivity implements FragmentoLista.OnPersonaSeleccionada {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -47,7 +48,6 @@ public class MainActivity extends ActionBarActivity implements FragmentoLista.On
      */
     @Override
     public void OnPersonaSelect(Persona persona) {
-        // TODO
-        //FragmentoFoto fFoto =
+        FragmentoFoto fFoto = (FragmentoFoto) getSupportFragmentManager().findFragmentById(R.id.fragmentoFoto);
     }
 }

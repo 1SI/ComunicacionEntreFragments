@@ -1,6 +1,5 @@
 package com.svalero.comunicacionentrefragments.fragments;
 
-import android.app.Fragment;
 import android.graphics.drawable.Drawable;
 import android.os.Bundle;
 import android.view.LayoutInflater;
@@ -10,7 +9,7 @@ import android.widget.ImageView;
 
 import com.svalero.comunicacionentrefragments.R;
 
-public class FragmentoFoto extends Fragment {
+public class FragmentoFoto extends android.support.v4.app.Fragment {
 
     private ImageView imgFoto;
 
